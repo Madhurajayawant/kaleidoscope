@@ -271,12 +271,12 @@ export class Application {
 
   async fillEssayAnimal() {
     await this.essayAnimal.click();
-    await this.essayAnimal.fill("Animal is animal");
+    await this.essayAnimal.fill("Animal is Animal");
   }
 
   async fillEssaySchool() {
     await this.essaySchool.click();
-    await this.essaySchool.fill("school is school");
+    await this.essaySchool.fill("School is School");
   }
 
   async clickReviewPageEssay() {
