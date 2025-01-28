@@ -4,7 +4,8 @@ import {
   randomSchoolName,
   randomUsername,
   userData,
-} from "../page-object/common";
+} from "./common";
+import * as inputText from "../test-data/inputText.json";
 
 export class Application {
   readonly page: Page;
@@ -140,91 +141,11 @@ export class Application {
   }
 
   /* All the action methods used for the test start here. */
-  async clickLoginButton() {
-    await this.loginButton.click();
-  }
 
-  async fillEmailID() {
-    await this.Email.fill(randomUsername);
-  }
-
-  async clickNextButton() {
-    await this.nextButton.click();
-  }
-
-  async fillFirstName() {
-    await this.firstName.fill(userData[0].firstName);
-  }
-
-  async fillLastName() {
-    await this.lastName.fill(userData[0].lastName);
-  }
-
-  async fillPhoneNumber() {
-    await this.phoneNumber.fill(userData[0].phoneNumber);
-  }
-
-  async fillPassword() {
-    await this.password.fill(userData[0].password);
-  }
-
-  async checkSecurityBox() {
-    await this.securityCheck.check();
-  }
-
-  async clickSubmitButton() {
-    await this.submitButton.click();
-  }
-
-  async fillStreetAddress() {
-    await this.address.fill(userData[0].streetAddress);
-  }
-
-  async fillState() {
-    await this.state.click();
-    await this.randomStateSelect.click();
-  }
-  async fillCity() {
-    await this.city.fill(userData[0].city);
-  }
-
-  async fillZipCode() {
-    await this.zipCode.fill(userData[0].zipCode);
-  }
-
-  async fillCountry() {
-    await this.country.click();
-    await this.randomCountrySelect.click();
-  }
   async clickNextPageBtn() {
     await this.page.waitForTimeout(6000);
     await this.nextPageButton.dblclick();
-    await this.page.waitForTimeout(6000);
-  }
-
-  async fillHighScoolName() {
-    await this.highScoolName.fill(randomSchoolName);
-  }
-
-  async fillHighScoolStreet() {
-    await this.highScoolStreet.fill(userData[0].streetAddress);
-  }
-
-  async fillHighSchoolCity() {
-    await this.highSchoolCity.fill(userData[0].city);
-  }
-
-  async fillHighSchoolState() {
-    await this.highScoolState.click();
-    await this.randomHighScoolState.click();
-  }
-
-  async fillHighScoolZipCode() {
-    await this.highScoolZipCode.fill(userData[0].zipCode);
-  }
-
-  async fillGPA() {
-    await this.GPA.fill(userData[0].GPA);
+    await this.page.waitForTimeout(3000);
   }
 
   async fillGraduationYear() {
@@ -233,109 +154,62 @@ export class Application {
     await this.graduationYear.fill(currentYear.toString());
   }
 
-  async fileUpload() {
-    await this.uploadFile.setInputFiles("./test-data/My School Transcript.pdf");
-  }
-
-  async clickAddEntryBtn() {
+  async extraCurricularActivity() {
     await this.addEntryButton.first().click();
-  }
-
-  async fillExtraCurricularName() {
+    await this.verifyExtraCurricularName();
     await this.extraCurricularName.fill(extraCurricuarData[0].randomActivity);
-  }
-
-  async fillyears() {
+    await this.verifyNumberOfyears();
     await this.numberOfyears.fill(extraCurricuarData[0].totalYears);
-  }
-
-  async fillLeadershipRole() {
     await this.leadershipRole.fill(extraCurricuarData[0].randomWord);
-  }
-
-  async fillInvolvement() {
     await this.involvement.fill(extraCurricuarData[0].randomWord);
-  }
-
-  async clickAddBtn() {
     await this.add.click();
   }
 
-  async checkSchool() {
-    await this.school.check();
-  }
-
-  async checkAnimal() {
-    await this.animal.check();
-  }
-
-  async fillEssayAnimal() {
-    await this.essayAnimal.click();
-    await this.essayAnimal.fill("Animal is Animal");
-  }
-
-  async fillEssaySchool() {
-    await this.essaySchool.click();
-    await this.essaySchool.fill("school is School");
-  }
-
-  async clickReviewPageEssay() {
-    await this.reviewPageEssay.click();
-  }
-
-  async clickViewApplication() {
-    await this.viewApplication.click();
-  }
-
-  async extraCurricularActivity() {
-    await this.clickAddEntryBtn();
-    await this.verifyExtraCurricularName();
-    await this.fillExtraCurricularName();
-    await this.verifyNumberOfyears();
-    await this.fillyears();
-    await this.fillLeadershipRole();
-    await this.fillInvolvement();
-    await this.clickAddBtn();
-  }
-
   async personalInfo() {
-    await this.fillEmailID();
-    await this.clickNextButton();
-    await this.fillFirstName();
-    await this.fillLastName();
-    await this.fillPhoneNumber();
-    await this.fillPassword();
-    await this.checkSecurityBox();
+    await this.Email.fill(randomUsername);
+    await this.nextButton.click();
+    await this.firstName.fill(userData[0].firstName);
+    await this.lastName.fill(userData[0].lastName);
+    await this.phoneNumber.fill(userData[0].phoneNumber);
+    await this.password.fill(userData[0].password);
+    await this.securityCheck.check();
   }
 
   async gotToKnowYouPageInfo() {
     await this.page.waitForTimeout(3000);
-    await this.fillStreetAddress();
-    await this.fillState();
-    await this.fillCity();
-    await this.fillZipCode();
-    await this.fillCountry();
+    await this.address.fill(userData[0].streetAddress);
+    await this.state.click();
+    await this.randomStateSelect.click();
+    await this.city.fill(userData[0].city);
+    await this.zipCode.fill(userData[0].zipCode);
+    await this.country.click();
+    await this.randomCountrySelect.click();
   }
 
-  async highScoolInfo() {
-    await this.fillHighScoolName();
-    await this.fillHighScoolStreet();
-    await this.fillHighSchoolCity();
-    await this.fillHighSchoolState();
-    await this.fillHighScoolZipCode();
-    await this.fillGPA();
+  async highSchoolInfo() {
+    await this.highScoolName.fill(randomSchoolName);
+    await this.highScoolStreet.fill(userData[0].streetAddress);
+    await this.highSchoolCity.fill(userData[0].city);
+    await this.highScoolState.click();
+    await this.randomHighScoolState.click();
+    await this.highScoolZipCode.fill(userData[0].zipCode);
+    await this.GPA.fill(userData[0].GPA);
     await this.fillGraduationYear();
-    await this.fileUpload();
+    await this.uploadFile.setInputFiles(
+      "./src/test-data/My School Transcript.pdf"
+    );
     await this.page.waitForTimeout(5000);
   }
 
   async essayPageInfo() {
-    await this.checkSchool();
-    await this.checkAnimal();
+    await this.school.check();
+    await this.animal.check();
     await this.verifySchoolCheck();
     await this.verifyAnimalCheck();
-    await this.fillEssaySchool();
-    await this.fillEssayAnimal();
+    await this.essaySchool.click();
+    await this.essaySchool.fill(inputText.essay.schoolEssay);
+    await this.essayAnimal.click();
+    await this.essayAnimal.fill(inputText.essay.animalEssay);
   }
 
   /* All the test assertion methods used for the test start here. */
@@ -361,8 +235,12 @@ export class Application {
   }
 
   async verifyEssay() {
-    await expect(this.page.getByText("Animal is animal")).toBeVisible();
-    await expect(this.page.getByText("School is school")).toBeVisible();
+    await expect(
+      this.page.getByText(inputText.essay.animalEssay)
+    ).toBeVisible();
+    await expect(
+      this.page.getByText(inputText.essay.schoolEssay)
+    ).toBeVisible();
   }
 
   async verifyEssayEdit() {
