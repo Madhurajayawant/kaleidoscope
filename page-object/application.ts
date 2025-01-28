@@ -271,7 +271,7 @@ export class Application {
 
   async fillEssayAnimal() {
     await this.essayAnimal.click();
-    await this.essayAnimal.fill("Animal is Animal");
+    await this.essayAnimal.fill("Animal is Animal"); 
   }
 
   async fillEssaySchool() {
